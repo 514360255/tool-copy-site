@@ -1,6 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 const request = require('request');
+const iconv = require('iconv-lite');
 
 /**
  * 读取本地文件
@@ -19,13 +20,19 @@ const getLocalFile = path => {
  */
 const mkdir = (file = '', mkPath = __dirname) => {
     const dirPath = path.join(mkPath, file);
-    if (!fs.existsSync(dirPath)) {
-        fs.mkdirSync(dirPath);
-    }
+    !fs.existsSync(dirPath) && fs.mkdirSync(dirPath);
 };
 
-const requestUrl = url => {
-
+const requestUrl = (url, encoding = 'utf-8') => {
+    request({url, encoding: null}, (error, response) => {
+        if(error) return console.error('获取失败');
+        if (response.statusCode === 200) {
+            const str = iconv.decode(response.body, encoding).toString();
+            const config = stub.config;
+            const file = path.resolve(__dirname, `../../${config.outDir}`);
+            console.log(file);
+        }
+    })
 };
 
 const utils = {

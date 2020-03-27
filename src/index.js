@@ -1,5 +1,5 @@
 const path = require('path');
 require('./stub');
-const { config: { outDir, copySite } } = stub;
-stub.mkdir(outDir, path.resolve(__dirname, '..'));
-stub.requestUrl(copySite);
+const config = stub.config;
+stub.mkdir(config.outDir, path.resolve(__dirname, '..'));
+stub.requestUrl(config.copySite, config.encoding);

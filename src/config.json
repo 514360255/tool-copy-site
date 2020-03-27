@@ -1,5 +1,6 @@
 {
-  "copySite": "http://www.baidu.com",
+  "copySite": "http://www.glmzxmr.com/index.html",
   "copyLevel": 1,
-  "outDir": "wwwRoot"
+  "outDir": "wwwRoot",
+  "encoding": "gb2312"
 }
